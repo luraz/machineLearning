@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<data>
+
+
+<thread name="T2" id='1'>
+<script>/home/laura/games/scripts/bottleneckCreator.py</script>
+<param>/home/laura/games/tensorflowResults/model</param>
+<param>/home/laura/games/tensorflowResults/bottlenecks</param>
+<param>/home/laura/work/download/motoc/motoc_1.jpg</param>
+<waitfor>2</waitfor>
+<waitfor>3</waitfor>
+</thread>
+
+<thread name="T3" id='2'>
+<script>/home/laura/games/scripts/bottleneckCreator.py</script>
+<param>/home/laura/games/tensorflowResults/model</param>
+<param>/home/laura/games/tensorflowResults/bottlenecks</param>
+<param>/home/laura/work/download/motoc/motoc_2.jpg</param>
+<waitfor>0</waitfor>
+<waitfor>3</waitfor>
+</thread>
+
+<thread name="T4" id='3'>
+<script>/home/laura/games/scripts/customImageDownloader.py</script>
+</thread>
+
+<thread name='T1' id='0'>
+<script>/home/laura/games/scripts/bottleneckCreator.py</script>
+<param>/home/laura/games/tensorflowResults/model</param>
+<param>/home/laura/games/tensorflowResults/bottlenecks</param>
+<param>/home/laura/work/download/motoc/motoc_0.jpg</param>
+</thread>
+
+</data>
