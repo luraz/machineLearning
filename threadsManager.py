@@ -28,7 +28,7 @@ def makeThreadsList(root):
 
 		threadcmdlist = ["python", child.find("script").text]
 		if len(threadcmdlist) == 1:
-			print "len is 0"
+			print ("len is 0")
 			continue
 		for param in child.findall("param"):
 			threadcmdlist.append(param.text)
@@ -71,7 +71,7 @@ def manageThreads(listThreads, queue):
 		
 
 def startThread(thread, queue, lock ):
-	print "starting %s " % thread["name"]
+	print ("starting %s " % thread["name"])
 	lock.acquire()
 	zerolist = queue.get()
 	zerolist[thread["id"]] = 2
@@ -82,14 +82,14 @@ def startThread(thread, queue, lock ):
 
 	threadChild.wait()
 
-	print "here"
+	print ("here")
 
 	lock.acquire()
 	zerolist = queue.get()
 	zerolist[thread["id"]] = 1
 	queue.put(zerolist)
 	lock.release()
-	print "thread %s finished " % thread["name"]
+	print ("thread %s finished " % thread["name"])
 
 def run(xmlPath):
 	queue = Queue()
@@ -101,6 +101,8 @@ def run(xmlPath):
 
 def main():
 	xmlPath = "threads.xml"
+	if not os.path.isfile(xmlPath):
+		print ("Not a valid xml path %s " % xmlPath)
 	run(xmlPath)
 
 if __name__ == '__main__':
