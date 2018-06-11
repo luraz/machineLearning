@@ -1,0 +1,2 @@
+PCAP_DIR = ''
+RESULT_DIR = ''
