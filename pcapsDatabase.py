@@ -5,7 +5,7 @@ import sqlite3,os,time,pipes,psycopg2,pprint
 try:
     import config as cfg
 except ImportError:
-    print "[ERROR] Please make a copy of 'congig_template.py' as 'ghostrCfgLocal.py' and customize it"
+    print "[ERROR] Please make a copy of 'congig_template.py' as 'config.py' and customize it"
 
 class Database:
     _instance = None
