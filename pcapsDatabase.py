@@ -613,11 +613,23 @@ class pcaps(DbObject):
         ("sha256", "TEXT")
     ]
 
+class users(DbObject):
+    FIELDS = [
+        ("id", "SERIAL PRIMARY KEY"), 
+        ("name", "TEXT"),
+        ("alias", "TEXT"),
+        ("password", "TEXT"),
+        ("creation_date", "TEXT"),
+        ("permission", "INTEGER")
+
+    ]
+
 
 def main():
     pass
-    # dbjs = Database()
-    # p = pcaps(dbjs)
+    dbjs = Database()
+    p = users(dbjs)
+    dbjs._createTables()
     # p.droptable()
     # dbjs._createTables()
   

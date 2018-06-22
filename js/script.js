@@ -222,27 +222,12 @@ $(function() {
 $(function() {
 	$("#seachPcapBTN").click(function() {
 		var ok = 0;
-		// $("input[name='inputdictionary']").each( function () {
 			var value = document.getElementById("searchFileInput").value;
 			console.log(value);
 			if (value.length > 2){
 				var key = document.getElementById("searchFileCombobox").value; 
 				console.log(key);
 			}; 
-			// var key = $(this).prop('id');
-			// var value = $(this).prop('value');
-			// console.log(key); 
-			// console.log(value);
-			// if (value.length > 0 && value.length < 3){
-			// 	dialog("Filter length must be longer");
-			// };
-			// if (value.length > 2){
-			// 	ok = 1;
-		// };
-		
-		// if (ok == 0){
-		// 	dialog("No filter");
-		// 	};
-		// });
+			
 	});
 });

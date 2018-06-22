@@ -1,2 +1,6 @@
-PCAP_DIR = ''
-RESULT_DIR = ''
+PCAP_DIR = '/home/laura/games/pcaps'
+RESULT_DIR = '/home/laura/games/results'
+DB_NAME = 'licensePcaps'
+DB_USER = 'postgres'
+DB_HOST = 'localhost'
+DB_PASSWORD = ''
