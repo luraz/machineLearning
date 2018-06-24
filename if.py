@@ -5,7 +5,7 @@ import os
 import ast
 import shutil
 import config as cfg
-from md5 import md5
+# from md5 import md5
 import time 
 from dbService import dbServicePcaps  as dbService
 
@@ -130,6 +130,7 @@ class PcapVisualisation:
         return str(self.doc)
 
     @cherrypy.expose
+    @require()
     def home(self):
         self.init()
         self.showMenu()
@@ -229,10 +230,10 @@ class PcapVisualisation:
                         input (type="file", style="display: none;",name="myFile")
                 with div(cls='col-sm-3'):
                     if uploadedFile:
-                        print "neh"
+                        print ("neh")
                         input (value=filee, type="text", cls="form-control", readonly="readonly")
                     else:
-                        print "yes"
+                        print ("yes")
                         input (type="text", cls="form-control", readonly="readonly")
             br()
             input(value="Upload", type="submit", cls='btn')
@@ -316,8 +317,8 @@ class PcapVisualisation:
         try:
             f = ast.literal_eval(f)
         except Exception as e :
-            print "Could not transform to dict file %s " % str(filepath) 
-            print e
+            print ("Could not transform to dict file %s " % str(filepath) )
+            print (e)
             return False
         self.representDictionary(f)
 
@@ -359,11 +360,13 @@ def getUsers():
     userss = dbUsers.getAll()
     return userss
 
-def encryptPassword(pw):
-    return md5(pw).hexdigest()
+# def encryptPassword(pw):
+#     return md5(pw).hexdigest()
 
 def main():
-    
+    # [/]
+# tools.staticdir.root = "L:\\workspace/licenta/machineLearning/"
+# tools.staticfile.root = "L:\\workspace/licenta/machineLearning/"
 
     # users = getUsers()
 
@@ -374,7 +377,12 @@ def main():
     # root = PcapVisualisationPublic()
     # root.secure = PcapVisualisation()
     # cherrypy.quickstart(PcapVisualisation, '/', 'a.conf')
+    # cherrypy.config.update({'/' : {
+    #         'tools.staticdir.root' : os.getcwd(),
+    #         'tools.staticfile.root' : os.getcwd()
+    #     }})
     cherrypy.quickstart(PcapVisualisation(), '/', 'a.conf')
+    # cherrypy.quickstart(PcapVisualisation())
 
 if __name__ == '__main__':
     main()

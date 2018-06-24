@@ -5,7 +5,7 @@ import sqlite3,os,time,pipes,psycopg2,pprint
 try:
     import config as cfg
 except ImportError:
-    print "[ERROR] Please make a copy of 'congig_template.py' as 'config.py' and customize it"
+    print ("[ERROR] Please make a copy of 'congig_template.py' as 'config.py' and customize it")
 
 class Database:
     _instance = None
@@ -13,7 +13,7 @@ class Database:
         try:
             self.connection = psycopg2.connect("dbname=%s user=%s host=%s password=%s" % (cfg.DB_NAME, cfg.DB_USER, cfg.DB_HOST, cfg.DB_PASSWORD))
         except Exception as e:
-            print "[ERROR] cannot connect to database with error %s " % e
+            print ("[ERROR] cannot connect to database with error %s " % e)
             self.connection = None
 
     def _createTables(self):
@@ -28,14 +28,14 @@ class Database:
         return Database._instance 
 
     def reconnect(self):
-        print "reconnecting to postgress....."
+        print ("reconnecting to postgress.....")
         self.connection.close()
         self.connection = None
 
         try:
             self.connection = psycopg2.connect("dbname=%s user=%s host=%s password=%s" % (cfg.DB_NAME, cfg.DB_USER, cfg.DB_HOST, cfg.DB_PASSWORD))
         except Exception as e:
-            print "[ERROR] cannot connect to database with error %s " % e
+            print ("[ERROR] cannot connect to database with error %s " % e)
             self.connection = None
 
 class DbObject(object):
@@ -53,7 +53,7 @@ class DbObject(object):
             query.append(" ".join(f))
         qm = ", ".join(query)
         query = "CREATE TABLE IF NOT EXISTS %s( %s )" % (cls.__name__,qm)
-        print query
+        print (query)
         try :
             c = db.connection.cursor()
             c.execute(query)
@@ -72,7 +72,7 @@ class DbObject(object):
                     except psycopg2.OperationalError:
                         counter -= 1
                 else:
-                    print "connection is alive"
+                    print ("connection is alive")
                     counter -= 1
         except psycopg2.DatabaseError:
             counter = 5
@@ -88,30 +88,30 @@ class DbObject(object):
                     except psycopg2.DatabaseError:
                         counter -= 1
                 else:
-                    print "connection is alive"
+                    print ("connection is alive")
                     counter -= 1
         except Exception as e:
-            print "[ERROR] unable to create table %s with error %s " % (cls.__name__,e)
-            print query
+            print ("[ERROR] unable to create table %s with error %s " % (cls.__name__,e))
+            print (query)
 
             db.connection.rollback()
             return False
         c.close()
-        print "created"
+        print ("created")
         return True
 
     @classmethod
     def addColumn(cls, name, typee):
         db = Database()
         query = "ALTER TABLE %s ADD %s %s" % (cls.__name__, name, typee)
-        print query
+        print (query)
         try:
             c = db.connection.cursor()
             c.execute(query)
             db.connection.commit()
         except Exception as e:
-            print query
-            print "[ERROR] unable to add column %s to table %s with error %s " % (name, cls.__name__, e)
+            print (query)
+            print ("[ERROR] unable to add column %s to table %s with error %s " % (name, cls.__name__, e))
             db.connection.rollback()
             return False
         c.close()
@@ -121,14 +121,14 @@ class DbObject(object):
     def removeColumn(cls, name):
         db = Database()
         query = "ALTER TABLE %s DROP COLUMN %s " % (cls.__name__, name)
-        print query
+        print (query)
         try:
             c = db.connection.cursor()
             c.execute(query)
             db.connection.commit()
         except Exception as e:
-            print query
-            print "[ERROR] unable to remove column %s from table %s with error %s " % (name, cls.__name__, e)
+            print (query)
+            print ("[ERROR] unable to remove column %s from table %s with error %s " % (name, cls.__name__, e))
             db.connection.rollback()
             return False
 
@@ -157,7 +157,7 @@ class DbObject(object):
                     except psycopg2.OperationalError:
                         counter -= 1
                 else:
-                    print "connection is alive"
+                    print ("connection is alive")
                     counter -= 1
         except psycopg2.DatabaseError:
             counter = 5
@@ -172,11 +172,11 @@ class DbObject(object):
                     except psycopg2.DatabaseError:
                         counter -= 1
                 else:
-                    print "connection is alive"
+                    print ("connection is alive")
                     counter -= 1
         except Exception as e:
-            print "[ERROR] unable to drop table %s with error %s" % (cls.__name__, e)
-            print query
+            print ("[ERROR] unable to drop table %s with error %s" % (cls.__name__, e))
+            print (query)
             db.connection.rollback()
             return False
         db.connection.commit()
@@ -206,7 +206,7 @@ class DbObject(object):
                     except psycopg2.OperationalError:
                         counter -= 1
                 else:
-                    print "connection is alive"
+                    print ("connection is alive")
                     counter -= 1
         except psycopg2.DatabaseError:
             counter = 5
@@ -221,13 +221,13 @@ class DbObject(object):
                     except psycopg2.DatabaseError:
                         counter -= 1
                 else:
-                    print "connection is alive"
+                    print ("connection is alive")
                     self.reconnect()
                     counter -= 1
         except Exception as e:
-            print "[ERROR] unable to delete entry in table %s  with error %s " % (self.__class__.__name__, e)
-            print query
-            print params
+            print ("[ERROR] unable to delete entry in table %s  with error %s " % (self.__class__.__name__, e))
+            print (query)
+            print (params)
             db.connection.rollback()
             return False
         db.connection.commit()
@@ -273,7 +273,7 @@ class DbObject(object):
                 idd = self.id
             db.connection.commit()
         except psycopg2.OperationalError:
-            print "error operational"
+            print ("error operational")
             counter = 5
             while counter > 0:
                 if db.connection.closed != 0:
@@ -294,11 +294,11 @@ class DbObject(object):
                         counter -= 1
                         continue
                 else:
-                    print "connection is alive in save operational error "
+                    print ("connection is alive in save operational error ")
                     counter -= 1
         except psycopg2.DatabaseError:
-            print repr(query)
-            print repr(params)
+            print (repr(query))
+            print (repr(params))
             import traceback
             traceback.print_exc()
             # print "error operational"
@@ -322,14 +322,14 @@ class DbObject(object):
                         counter -= 1
                         continue
                 else:
-                    print "connection is alive in save database error "
+                    print ("connection is alive in save database error ")
                     counter -= 1
 
 
         except Exception as e:   
-            print "[ERROR] unable to save in table %s with error %s " % (self.__class__.__name__,e)
-            print query
-            print params
+            print ("[ERROR] unable to save in table %s with error %s " % (self.__class__.__name__,e))
+            print (query)
+            print (params)
             if db.connection.closed > 0:
                 db.reconnect()
             else:
@@ -366,7 +366,7 @@ class DbObject(object):
                         counter -= 1
                         continue
                 else:
-                    print "connection is alive in get operational error"
+                    print ("connection is alive in get operational error")
                     counter -= 1
         except psycopg2.DatabaseError:
             counter = 5
@@ -383,11 +383,11 @@ class DbObject(object):
                         counter -= 1
                         continue
                 else:
-                    print "connection is alive in get() database error "
+                    print ("connection is alive in get() database error ")
                     counter -= 1
         except Exception as e :
-            print "[ERROR] unable to get from table %s  with error %s" % (cls.__name__,e)
-            print query
+            print ("[ERROR] unable to get from table %s  with error %s" % (cls.__name__,e))
+            print (query)
             return None
             db.connection.rollback()
         
@@ -448,7 +448,7 @@ class DbObject(object):
 
             query += " and ".join(conditions)
         except (ValueError, KeyError):
-            print "[ERROR] params should be of the form : parameter_comparison=value (comparison: gt, gte, lt , lte , like , eq"
+            print ("[ERROR] params should be of the form : parameter_comparison=value (comparison: gt, gte, lt , lte , like , eq")
             return None
         if paramspag != []:
             query += " order by id DESC LIMIT %s OFFSET %s "
@@ -477,7 +477,7 @@ class DbObject(object):
                         counter -= 1
                         continue
                 else:
-                    print "connection is alive in search operational error "
+                    print ("connection is alive in search operational error ")
                     counter -= 1
         except psycopg2.DatabaseError:
             counter = 5
@@ -495,12 +495,12 @@ class DbObject(object):
                         counter -= 1
                         continue
                 else:
-                    print "connection is alive in search database error "
+                    print ("connection is alive in search database error ")
                     counter -= 1
         except Exception as e :
-            print "[ERROR] unable to search in table %s  with error %s" % (cls.__name__,e)
-            print query
-            print params
+            print ("[ERROR] unable to search in table %s  with error %s" % (cls.__name__,e))
+            print (query)
+            print (params)
             if db.connection.closed > 0:
                 db.reconnect()
             else:
@@ -510,7 +510,7 @@ class DbObject(object):
         try:
             col_values = c.fetchall()
         except Exception as e:
-            print str(e)
+            print (str(e))
             col_values = None
         results = None
 
@@ -554,7 +554,7 @@ class DbObject(object):
                     except psycopg2.OperationalError:
                         counter -= 1
                 else:
-                    print "connection is alive in getAll operational error"
+                    print ("connection is alive in getAll operational error")
                     counter -= 1
         except psycopg2.DatabaseError:
             counter = 5
@@ -571,12 +571,12 @@ class DbObject(object):
                     except psycopg2.DatabaseError:
                         counter -= 1
                 else:
-                    print "connection is alive in getAll database error "
+                    print ("connection is alive in getAll database error ")
                     counter -= 1
         except Exception as e :
-            print "[ERROR] unable to getAll from table %s  with error %s " % (cls.__name__,e)
-            print query
-            print params
+            print ("[ERROR] unable to getAll from table %s  with error %s " % (cls.__name__,e))
+            print (query)
+            print (params)
             if db.connection.closed > 0:
                 db.reconnect()
             else:
@@ -586,7 +586,7 @@ class DbObject(object):
         try:    
             col_values = c.fetchall()
         except Exception as e :
-            print str(e)
+            print (str(e))
             return None
         results = None
 
@@ -628,7 +628,7 @@ class users(DbObject):
 def main():
     pass
     dbjs = Database()
-    p = users(dbjs)
+    # p = users(dbjs)
     dbjs._createTables()
     # p.droptable()
     # dbjs._createTables()

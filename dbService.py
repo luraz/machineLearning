@@ -3,8 +3,8 @@ import os
 try: 
     from pcapsDatabase import Database as dtb 
     from pcapsDatabase import pcaps, users
-except ImportError:
-    print "[ERROR] unable to import from pcapsDatabase pcaps - if.py"
+except ImportError as e:
+    print ("[ERROR] unable to import from pcapsDatabase pcaps - if.py %s " % str(e))
 
 import config as cfg
 
@@ -50,7 +50,7 @@ class dbServicePcaps:
         try:
             self.dbObject.save()
         except Exception as e :
-            print "Exception %s in add" % str(e)
+            print ("Exception %s in add" % str(e))
             return False
             
         return True
@@ -67,14 +67,14 @@ class dbServicePcaps:
                     if "id" in pcap:
                         self.pcapsDb.delete(pcap["id"])
                     else:
-                        print "Id not in pcap"
-                        print str(pcap)
+                        print ("Id not in pcap")
+                        print (str(pcap))
 
     def delete(self, id):
         try:
             self.dbObject.delete(id)
         except Exception as e :
-            print "Exception %s in delete " % str(e)
+            print ("Exception %s in delete " % str(e))
             return False
         return True
 
@@ -92,7 +92,7 @@ class dbServicePcaps:
         try:
             obj = self.dbObject.get(id)
         except Exception as e:
-            print "Exception %s in get" % str(e)
+            print ("Exception %s in get" % str(e))
             return None
         return obj
 
@@ -109,7 +109,7 @@ class dbServicePcaps:
 
     def update(self, **kwargs):
         if "id" not in kwargs:
-            print "Id %s not in kwargs" % str(kwargs)
+            print ("Id %s not in kwargs" % str(kwargs))
             return False
 
         self.uninitTable()
@@ -127,7 +127,7 @@ class dbServicePcaps:
         try: 
             self.dbObject.save()
         except Exception as e:
-            print "Exception at update %s " % str(e)
+            print ("Exception at update %s " % str(e))
             return False
 
         return True
@@ -143,7 +143,7 @@ class dbServicePcaps:
             else:
                 values = self.dbPcaps.getAll(sort="desc", pageNr=index, pageSize=nb)
         except Exception as e :
-            print "Exception at getAll"
+            print ("Exception at getAll")
             return None
         return values
             
