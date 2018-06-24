@@ -1,0 +1,396 @@
+[25/Jun/2018:00:30:02] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:30:02] ENGINE Bus STARTING
+[25/Jun/2018:00:30:02] ENGINE Set handler for console events.
+[25/Jun/2018:00:30:02] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:30:02] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:30:02] ENGINE Bus STARTED
+[25/Jun/2018:00:30:07] ENGINE Started monitor thread 'Session cleanup'.
+[25/Jun/2018:00:39:22] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:39:22] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:39:22] ENGINE Bus STOPPING
+[25/Jun/2018:00:39:23] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:39:23] ENGINE Stopped thread 'Session cleanup'.
+[25/Jun/2018:00:39:23] ENGINE Removed handler for console events.
+[25/Jun/2018:00:39:23] ENGINE Bus STOPPED
+[25/Jun/2018:00:39:23] ENGINE Bus EXITING
+[25/Jun/2018:00:39:23] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:39:23] ENGINE Bus EXITED
+[25/Jun/2018:00:39:23] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:39:23] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:39:23] ENGINE Bus STARTING
+[25/Jun/2018:00:39:23] ENGINE Set handler for console events.
+[25/Jun/2018:00:39:23] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:39:23] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:39:23] ENGINE Bus STARTED
+[25/Jun/2018:00:39:30] ENGINE Started monitor thread 'Session cleanup'.
+[25/Jun/2018:00:44:01] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:44:01] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:44:01] ENGINE Bus STOPPING
+[25/Jun/2018:00:44:01] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:44:01] ENGINE Removed handler for console events.
+[25/Jun/2018:00:44:01] ENGINE Stopped thread 'Session cleanup'.
+[25/Jun/2018:00:44:01] ENGINE Bus STOPPED
+[25/Jun/2018:00:44:01] ENGINE Bus EXITING
+[25/Jun/2018:00:44:01] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:44:01] ENGINE Bus EXITED
+[25/Jun/2018:00:44:01] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:44:01] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:44:01] ENGINE Bus STARTING
+[25/Jun/2018:00:44:01] ENGINE Set handler for console events.
+[25/Jun/2018:00:44:01] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:44:02] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:44:02] ENGINE Bus STARTED
+[25/Jun/2018:00:45:02] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:45:02] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:45:02] ENGINE Bus STOPPING
+[25/Jun/2018:00:45:02] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:45:02] ENGINE Removed handler for console events.
+[25/Jun/2018:00:45:02] ENGINE Bus STOPPED
+[25/Jun/2018:00:45:02] ENGINE Bus EXITING
+[25/Jun/2018:00:45:02] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:45:02] ENGINE Bus EXITED
+[25/Jun/2018:00:45:02] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:45:02] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:45:02] ENGINE Bus STARTING
+[25/Jun/2018:00:45:02] ENGINE Set handler for console events.
+[25/Jun/2018:00:45:02] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:45:03] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:45:03] ENGINE Bus STARTED
+[25/Jun/2018:00:46:08] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:46:08] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:46:08] ENGINE Bus STOPPING
+[25/Jun/2018:00:46:08] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:46:08] ENGINE Removed handler for console events.
+[25/Jun/2018:00:46:08] ENGINE Bus STOPPED
+[25/Jun/2018:00:46:08] ENGINE Bus EXITING
+[25/Jun/2018:00:46:08] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:46:08] ENGINE Bus EXITED
+[25/Jun/2018:00:46:08] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:46:08] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:46:08] ENGINE Bus STARTING
+[25/Jun/2018:00:46:08] ENGINE Set handler for console events.
+[25/Jun/2018:00:46:08] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:46:09] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:46:09] ENGINE Bus STARTED
+[25/Jun/2018:00:46:12] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:46:12] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:46:12] ENGINE Bus STOPPING
+[25/Jun/2018:00:46:13] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:46:13] ENGINE Removed handler for console events.
+[25/Jun/2018:00:46:13] ENGINE Bus STOPPED
+[25/Jun/2018:00:46:13] ENGINE Bus EXITING
+[25/Jun/2018:00:46:13] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:46:13] ENGINE Bus EXITED
+[25/Jun/2018:00:46:13] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:46:13] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:46:13] ENGINE Bus STARTING
+[25/Jun/2018:00:46:13] ENGINE Set handler for console events.
+[25/Jun/2018:00:46:13] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:46:13] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:46:13] ENGINE Bus STARTED
+[25/Jun/2018:00:48:19] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:48:19] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:48:19] ENGINE Bus STOPPING
+[25/Jun/2018:00:48:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:48:19] ENGINE Removed handler for console events.
+[25/Jun/2018:00:48:19] ENGINE Bus STOPPED
+[25/Jun/2018:00:48:19] ENGINE Bus EXITING
+[25/Jun/2018:00:48:19] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:48:19] ENGINE Bus EXITED
+[25/Jun/2018:00:48:19] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:48:20] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:48:20] ENGINE Bus STARTING
+[25/Jun/2018:00:48:20] ENGINE Set handler for console events.
+[25/Jun/2018:00:48:20] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:48:20] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:48:20] ENGINE Bus STARTED
+[25/Jun/2018:00:49:17] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:49:17] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:49:17] ENGINE Bus STOPPING
+[25/Jun/2018:00:49:17] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:49:17] ENGINE Removed handler for console events.
+[25/Jun/2018:00:49:17] ENGINE Bus STOPPED
+[25/Jun/2018:00:49:17] ENGINE Bus EXITING
+[25/Jun/2018:00:49:17] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:49:17] ENGINE Bus EXITED
+[25/Jun/2018:00:49:17] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:49:18] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:49:18] ENGINE Bus STARTING
+[25/Jun/2018:00:49:18] ENGINE Set handler for console events.
+[25/Jun/2018:00:49:18] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:49:18] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:49:18] ENGINE Bus STARTED
+[25/Jun/2018:00:49:44] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:49:44] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:49:44] ENGINE Bus STOPPING
+[25/Jun/2018:00:49:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:49:44] ENGINE Removed handler for console events.
+[25/Jun/2018:00:49:44] ENGINE Bus STOPPED
+[25/Jun/2018:00:49:44] ENGINE Bus EXITING
+[25/Jun/2018:00:49:44] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:49:44] ENGINE Bus EXITED
+[25/Jun/2018:00:49:44] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:49:45] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:49:45] ENGINE Bus STARTING
+[25/Jun/2018:00:49:45] ENGINE Set handler for console events.
+[25/Jun/2018:00:49:45] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:49:45] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:49:45] ENGINE Bus STARTED
+[25/Jun/2018:00:50:07] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:50:07] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:50:07] ENGINE Bus STOPPING
+[25/Jun/2018:00:50:08] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:50:08] ENGINE Removed handler for console events.
+[25/Jun/2018:00:50:08] ENGINE Bus STOPPED
+[25/Jun/2018:00:50:08] ENGINE Bus EXITING
+[25/Jun/2018:00:50:08] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:50:08] ENGINE Bus EXITED
+[25/Jun/2018:00:50:08] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:50:08] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:50:08] ENGINE Bus STARTING
+[25/Jun/2018:00:50:08] ENGINE Set handler for console events.
+[25/Jun/2018:00:50:08] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:50:08] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:50:08] ENGINE Bus STARTED
+[25/Jun/2018:00:50:30] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:50:30] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:50:30] ENGINE Bus STOPPING
+[25/Jun/2018:00:50:30] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:50:30] ENGINE Removed handler for console events.
+[25/Jun/2018:00:50:30] ENGINE Bus STOPPED
+[25/Jun/2018:00:50:30] ENGINE Bus EXITING
+[25/Jun/2018:00:50:30] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:50:30] ENGINE Bus EXITED
+[25/Jun/2018:00:50:30] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:50:31] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:50:31] ENGINE Bus STARTING
+[25/Jun/2018:00:50:31] ENGINE Set handler for console events.
+[25/Jun/2018:00:50:31] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:50:31] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:50:31] ENGINE Bus STARTED
+[25/Jun/2018:00:50:33] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:50:33] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:50:33] ENGINE Bus STOPPING
+[25/Jun/2018:00:50:33] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:50:33] ENGINE Removed handler for console events.
+[25/Jun/2018:00:50:33] ENGINE Bus STOPPED
+[25/Jun/2018:00:50:33] ENGINE Bus EXITING
+[25/Jun/2018:00:50:33] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:50:33] ENGINE Bus EXITED
+[25/Jun/2018:00:50:33] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:50:34] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:50:34] ENGINE Bus STARTING
+[25/Jun/2018:00:50:34] ENGINE Set handler for console events.
+[25/Jun/2018:00:50:34] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:50:34] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:50:34] ENGINE Bus STARTED
+[25/Jun/2018:00:54:48] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:54:48] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:54:48] ENGINE Bus STOPPING
+[25/Jun/2018:00:54:49] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:54:49] ENGINE Removed handler for console events.
+[25/Jun/2018:00:54:49] ENGINE Bus STOPPED
+[25/Jun/2018:00:54:49] ENGINE Bus EXITING
+[25/Jun/2018:00:54:49] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:54:49] ENGINE Bus EXITED
+[25/Jun/2018:00:54:49] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:54:49] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:54:49] ENGINE Bus STARTING
+[25/Jun/2018:00:54:49] ENGINE Set handler for console events.
+[25/Jun/2018:00:54:49] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:54:49] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:54:49] ENGINE Bus STARTED
+[25/Jun/2018:00:54:52] ENGINE Restarting because L:\workspace\licenta\machineLearning\auth.py changed.
+[25/Jun/2018:00:54:52] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:54:52] ENGINE Bus STOPPING
+[25/Jun/2018:00:54:52] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:54:52] ENGINE Removed handler for console events.
+[25/Jun/2018:00:54:52] ENGINE Bus STOPPED
+[25/Jun/2018:00:54:52] ENGINE Bus EXITING
+[25/Jun/2018:00:54:52] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:54:52] ENGINE Bus EXITED
+[25/Jun/2018:00:54:52] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:54:53] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:54:53] ENGINE Bus STARTING
+[25/Jun/2018:00:54:53] ENGINE Set handler for console events.
+[25/Jun/2018:00:54:53] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:54:53] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:54:53] ENGINE Bus STARTED
+[25/Jun/2018:00:55:07] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:00:55:07] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:55:07] ENGINE Bus STOPPING
+[25/Jun/2018:00:55:08] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:55:08] ENGINE Removed handler for console events.
+[25/Jun/2018:00:55:08] ENGINE Bus STOPPED
+[25/Jun/2018:00:55:08] ENGINE Bus EXITING
+[25/Jun/2018:00:55:08] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:55:08] ENGINE Bus EXITED
+[25/Jun/2018:00:55:08] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:55:08] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:55:08] ENGINE Bus STARTING
+[25/Jun/2018:00:55:08] ENGINE Set handler for console events.
+[25/Jun/2018:00:55:08] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:55:08] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:55:08] ENGINE Bus STARTED
+[25/Jun/2018:00:56:39] ENGINE Restarting because L:\workspace\licenta\machineLearning\auth.py changed.
+[25/Jun/2018:00:56:39] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:56:39] ENGINE Bus STOPPING
+[25/Jun/2018:00:56:39] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:56:39] ENGINE Removed handler for console events.
+[25/Jun/2018:00:56:39] ENGINE Bus STOPPED
+[25/Jun/2018:00:56:39] ENGINE Bus EXITING
+[25/Jun/2018:00:56:39] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:56:39] ENGINE Bus EXITED
+[25/Jun/2018:00:56:39] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:56:40] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:56:40] ENGINE Bus STARTING
+[25/Jun/2018:00:56:40] ENGINE Set handler for console events.
+[25/Jun/2018:00:56:40] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:56:40] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:56:40] ENGINE Bus STARTED
+[25/Jun/2018:00:57:22] ENGINE Restarting because L:\workspace\licenta\machineLearning\auth.py changed.
+[25/Jun/2018:00:57:22] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:57:22] ENGINE Bus STOPPING
+[25/Jun/2018:00:57:23] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:57:23] ENGINE Removed handler for console events.
+[25/Jun/2018:00:57:23] ENGINE Bus STOPPED
+[25/Jun/2018:00:57:23] ENGINE Bus EXITING
+[25/Jun/2018:00:57:23] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:57:23] ENGINE Bus EXITED
+[25/Jun/2018:00:57:23] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:57:23] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:57:23] ENGINE Bus STARTING
+[25/Jun/2018:00:57:23] ENGINE Set handler for console events.
+[25/Jun/2018:00:57:23] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:57:23] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:57:23] ENGINE Bus STARTED
+[25/Jun/2018:00:58:08] ENGINE Restarting because L:\workspace\licenta\machineLearning\auth.py changed.
+[25/Jun/2018:00:58:08] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:58:08] ENGINE Bus STOPPING
+[25/Jun/2018:00:58:08] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:58:08] ENGINE Removed handler for console events.
+[25/Jun/2018:00:58:08] ENGINE Bus STOPPED
+[25/Jun/2018:00:58:08] ENGINE Bus EXITING
+[25/Jun/2018:00:58:08] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:58:08] ENGINE Bus EXITED
+[25/Jun/2018:00:58:08] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:58:08] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:58:08] ENGINE Bus STARTING
+[25/Jun/2018:00:58:08] ENGINE Set handler for console events.
+[25/Jun/2018:00:58:08] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:58:09] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:58:09] ENGINE Bus STARTED
+[25/Jun/2018:00:59:33] ENGINE Restarting because L:\workspace\licenta\machineLearning\auth.py changed.
+[25/Jun/2018:00:59:33] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:00:59:33] ENGINE Bus STOPPING
+[25/Jun/2018:00:59:33] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:00:59:33] ENGINE Removed handler for console events.
+[25/Jun/2018:00:59:33] ENGINE Bus STOPPED
+[25/Jun/2018:00:59:33] ENGINE Bus EXITING
+[25/Jun/2018:00:59:33] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:00:59:33] ENGINE Bus EXITED
+[25/Jun/2018:00:59:33] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:00:59:34] ENGINE Listening for SIGTERM.
+[25/Jun/2018:00:59:34] ENGINE Bus STARTING
+[25/Jun/2018:00:59:34] ENGINE Set handler for console events.
+[25/Jun/2018:00:59:34] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:00:59:34] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:00:59:34] ENGINE Bus STARTED
+[25/Jun/2018:01:00:04] ENGINE Console event 0: shutting down bus
+[25/Jun/2018:01:00:04] ENGINE Removed handler for console events.
+[25/Jun/2018:01:00:04] ENGINE Bus STOPPING
+[25/Jun/2018:01:00:05] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:01:00:05] ENGINE Handler for console events already off.
+[25/Jun/2018:01:00:05] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:01:00:05] ENGINE Bus STOPPED
+[25/Jun/2018:01:00:05] ENGINE Bus EXITING
+[25/Jun/2018:01:00:05] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:01:00:05] ENGINE Bus EXITED
+[25/Jun/2018:01:00:07] ENGINE Listening for SIGTERM.
+[25/Jun/2018:01:00:07] ENGINE Bus STARTING
+[25/Jun/2018:01:00:07] ENGINE Set handler for console events.
+[25/Jun/2018:01:00:07] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:01:00:08] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:01:00:08] ENGINE Bus STARTED
+[25/Jun/2018:01:00:43] ENGINE Started monitor thread 'Session cleanup'.
+[25/Jun/2018:01:01:44] ENGINE Restarting because L:\workspace\licenta\machineLearning\auth.py changed.
+[25/Jun/2018:01:01:44] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:01:01:44] ENGINE Bus STOPPING
+[25/Jun/2018:01:01:45] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:01:01:45] ENGINE Removed handler for console events.
+[25/Jun/2018:01:01:45] ENGINE Stopped thread 'Session cleanup'.
+[25/Jun/2018:01:01:45] ENGINE Bus STOPPED
+[25/Jun/2018:01:01:45] ENGINE Bus EXITING
+[25/Jun/2018:01:01:45] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:01:01:45] ENGINE Bus EXITED
+[25/Jun/2018:01:01:45] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:01:01:45] ENGINE Listening for SIGTERM.
+[25/Jun/2018:01:01:45] ENGINE Bus STARTING
+[25/Jun/2018:01:01:45] ENGINE Set handler for console events.
+[25/Jun/2018:01:01:45] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:01:01:45] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:01:01:45] ENGINE Bus STARTED
+[25/Jun/2018:01:01:48] ENGINE Started monitor thread 'Session cleanup'.
+[25/Jun/2018:01:02:16] ENGINE Restarting because L:\workspace\licenta\machineLearning\auth.py changed.
+[25/Jun/2018:01:02:16] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:01:02:16] ENGINE Bus STOPPING
+[25/Jun/2018:01:02:16] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:01:02:16] ENGINE Removed handler for console events.
+[25/Jun/2018:01:02:16] ENGINE Stopped thread 'Session cleanup'.
+[25/Jun/2018:01:02:16] ENGINE Bus STOPPED
+[25/Jun/2018:01:02:16] ENGINE Bus EXITING
+[25/Jun/2018:01:02:16] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:01:02:16] ENGINE Bus EXITED
+[25/Jun/2018:01:02:16] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:01:02:17] ENGINE Listening for SIGTERM.
+[25/Jun/2018:01:02:17] ENGINE Bus STARTING
+[25/Jun/2018:01:02:17] ENGINE Set handler for console events.
+[25/Jun/2018:01:02:17] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:01:02:17] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:01:02:17] ENGINE Bus STARTED
+[25/Jun/2018:01:03:18] ENGINE Restarting because L:\workspace\licenta\machineLearning\auth.py changed.
+[25/Jun/2018:01:03:18] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:01:03:18] ENGINE Bus STOPPING
+[25/Jun/2018:01:03:18] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:01:03:18] ENGINE Removed handler for console events.
+[25/Jun/2018:01:03:18] ENGINE Bus STOPPED
+[25/Jun/2018:01:03:18] ENGINE Bus EXITING
+[25/Jun/2018:01:03:18] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:01:03:18] ENGINE Bus EXITED
+[25/Jun/2018:01:03:18] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:01:03:19] ENGINE Listening for SIGTERM.
+[25/Jun/2018:01:03:19] ENGINE Bus STARTING
+[25/Jun/2018:01:03:19] ENGINE Set handler for console events.
+[25/Jun/2018:01:03:19] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:01:03:19] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:01:03:19] ENGINE Bus STARTED
+[25/Jun/2018:01:04:00] ENGINE Started monitor thread 'Session cleanup'.
+[25/Jun/2018:01:05:05] ENGINE Restarting because L:\workspace\licenta\machineLearning\if.py changed.
+[25/Jun/2018:01:05:05] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:01:05:05] ENGINE Bus STOPPING
+[25/Jun/2018:01:05:05] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:01:05:05] ENGINE Removed handler for console events.
+[25/Jun/2018:01:05:05] ENGINE Stopped thread 'Session cleanup'.
+[25/Jun/2018:01:05:05] ENGINE Bus STOPPED
+[25/Jun/2018:01:05:05] ENGINE Bus EXITING
+[25/Jun/2018:01:05:05] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:01:05:05] ENGINE Bus EXITED
+[25/Jun/2018:01:05:05] ENGINE Re-spawning C:\Python27\python.exe if.py
+[25/Jun/2018:01:05:06] ENGINE Listening for SIGTERM.
+[25/Jun/2018:01:05:06] ENGINE Bus STARTING
+[25/Jun/2018:01:05:06] ENGINE Set handler for console events.
+[25/Jun/2018:01:05:06] ENGINE Started monitor thread 'Autoreloader'.
+[25/Jun/2018:01:05:06] ENGINE Serving on http://0.0.0.0:8000
+[25/Jun/2018:01:05:06] ENGINE Bus STARTED
+[25/Jun/2018:01:05:08] ENGINE Started monitor thread 'Session cleanup'.
+[25/Jun/2018:01:05:36] ENGINE Console event 0: shutting down bus
+[25/Jun/2018:01:05:36] ENGINE Removed handler for console events.
+[25/Jun/2018:01:05:36] ENGINE Bus STOPPING
+[25/Jun/2018:01:05:36] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+[25/Jun/2018:01:05:36] ENGINE Handler for console events already off.
+[25/Jun/2018:01:05:36] ENGINE Stopped thread 'Session cleanup'.
+[25/Jun/2018:01:05:36] ENGINE Stopped thread 'Autoreloader'.
+[25/Jun/2018:01:05:36] ENGINE Bus STOPPED
+[25/Jun/2018:01:05:36] ENGINE Bus EXITING
+[25/Jun/2018:01:05:36] ENGINE Waiting for child threads to terminate...
+[25/Jun/2018:01:05:36] ENGINE Bus EXITED

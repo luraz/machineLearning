@@ -122,15 +122,16 @@ class PcapVisualisation:
             script(type='text/javascript', src='js/script.js')
             
     @cherrypy.expose
-    @require()
+    # @require()
     def index(self):
-        self.init()
-        self.showMenu()
-        self.showChosenFile()
+        # self.init()
+        # self.showMenu()
+        # self.showChosenFile()
+        self.home()
         return str(self.doc)
 
     @cherrypy.expose
-    @require()
+    # @require()
     def home(self):
         self.init()
         self.showMenu()
@@ -158,22 +159,38 @@ class PcapVisualisation:
                         a("HOME",cls="navbar-brand", href="/home")
                     with ul(cls="nav navbar-nav"):
                         with li():
-                            a("Player", href="/")
+                            a("Player", href="/player")
                         with li():
                             a("Statistics new Pcap", href="showStatistics")
                         with li():
                             a("Statistics existing Pcap", href="searchStatistics")
                     button("DANGER",cls="btn btn-danger navbar-btn")
+                    with ul (cls="nav navbar-nav navbar-right"):
+                        with li():
+                            with a(href="/auth/register"):
+                                # span (" Sign Up", cls="glyphicon glyphicon-user")
+                                span("Sign Up")
+                        with li():
+                            with a (href="#"):
 
-    def showChosenFile(self, filename=None):
+                                # span (cls="glyphicon glyphicon-log-in")
+                                span("Login")
+        
+
+    @cherrypy.expose
+    @require()
+    def player(self, filename=None):
+        self.init()
+        self.showMenu()
         filename = "a.pcap"
-        with self.doc.head:
+        with self.doc:
             with div(cls='well well-sm'):
                 if filename is None:
                     p("No file loaded")
                 else :
                     span(str(filename))
                     button("Play", cls='btn',id="plyerlink")
+        return str(self.doc)
 
     @cherrypy.expose
     @require()
