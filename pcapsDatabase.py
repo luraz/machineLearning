@@ -617,18 +617,19 @@ class users(DbObject):
     FIELDS = [
         ("id", "SERIAL PRIMARY KEY"), 
         ("name", "TEXT"),
-        ("alias", "TEXT"),
+        ("username", "TEXT"),
         ("password", "TEXT"),
         ("creation_date", "TEXT"),
-        ("permission", "INTEGER")
-
+        ("role", "INTEGER"),
+        ("email", "TEXT"),
     ]
 
 
 def main():
     pass
     dbjs = Database()
-    # p = users(dbjs)
+    p = users(dbjs)
+    p.droptable()
     dbjs._createTables()
     # p.droptable()
     # dbjs._createTables()

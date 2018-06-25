@@ -11,42 +11,12 @@ from dbService import dbServicePcaps  as dbService
 
 from auth import AuthController, require, member_of, name_is
 
+ROLES = {
+    0 : 'administator', 
+    1 : 'standard'
+}
 
-# class Root:
-    
-#     _cp_config = {
-#         'tools.sessions.on': True,
-#         'tools.auth.on': True
-#     }
-    
-#     auth = AuthController()
-    
-#     restricted = RestrictedArea()
-    
-#     @cherrypy.expose
-#     @require()
-#     def index(self):
-#         return """This page only requires a valid login."""
-    
-#     @cherrypy.expose
-#     def open(self):
-#         return """This page is open to everyone"""
-    
-#     @cherrypy.expose
-#     @require(name_is("joe"))
-#     def only_for_joe(self):
-#         return """Hello Joe - this page is available to you only"""
-
-#     # This is only available if the user name is joe _and_ he's in group admin
-#     @cherrypy.expose
-#     @require(name_is("joe"))
-#     @require(member_of("admin"))   # equivalent: @require(name_is("joe"), member_of("admin"))
-#     def only_for_joe_admin(self):
-#         return """Hello Joe Admin - this page is available to you only"""
-
-
-# if __name__ == '__main__':
-#     cherrypy.quickstart(Root())
+SESSION_KEY = '_cp_username'
 
 class PcapVisualisationAdmin:
     _cp_config = {
@@ -105,7 +75,6 @@ class PcapVisualisation:
         
         self.dbPcaps = dbService("pcaps")
         self.dbUsers = dbService("users")
-        # self.dbUsers.add(name="Laura Cirdan", alias="lcirdan", password = "202cb962ac59075b964b07152d234b70", creation_date=time.time(), permission=0)
         
     def init(self):
         self.doc = dominate.document(title='Ahahaha')
@@ -135,10 +104,14 @@ class PcapVisualisation:
     def home(self):
         self.init()
         self.showMenu()
+        username = cherrypy.session.get(SESSION_KEY)
         with self.doc:
             with div(cls='container'):
                 with div (cls='well well-sm'):
-                    h3("Hi", align='center')
+                    if str(username) != "None":
+                        h3("Hi, %s" % username, align='center')
+                    else:
+                        h3("Hi", align='center')
         return str(self.doc)
 
     @cherrypy.expose
@@ -165,17 +138,57 @@ class PcapVisualisation:
                         with li():
                             a("Statistics existing Pcap", href="searchStatistics")
                     button("DANGER",cls="btn btn-danger navbar-btn")
+                    username = cherrypy.session.get(SESSION_KEY)
+                    print username
                     with ul (cls="nav navbar-nav navbar-right"):
-                        with li():
-                            with a(href="/auth/register"):
-                                # span (" Sign Up", cls="glyphicon glyphicon-user")
-                                span("Sign Up")
-                        with li():
-                            with a (href="#"):
+                        if username is None or str(username) == "None":
+                            with li():
+                                with a(href="/auth/register"):
+                                    # span (" Sign Up", cls="glyphicon glyphicon-user")
+                                    span("Sign Up")
+                            with li():
+                                with a (href="/auth/login"):
 
-                                # span (cls="glyphicon glyphicon-log-in")
-                                span("Login")
+                                    # span (cls="glyphicon glyphicon-log-in")
+                                    span("Login")
+                        else:
+                            with li():
+                                with a(href="/auth/logout"):
+                                    span("Log out")
         
+
+    @cherrypy.expose
+    @require()
+    @require(member_of("administrator")) 
+    def editUsers(self, **kwargs):
+        self.init()
+        self.showMenu()
+        nb = 0
+        index = 0
+        if "nb" in kwargs:
+            nb = kwargs["nb"]
+        if index in kwargs:
+            index = kwargs["index"]
+
+        values = self.dbUsers.getAll()
+
+
+
+        with self.doc:
+            with div (cls="container"):
+              with ul (cls="pagination"):
+                with li():
+                    a ("1", href="#")
+                with li(cls="active"):
+                    a ("2", href="#")
+                with li():
+                    a ("3", href="#")
+                with li():
+                    a ("4", href="#")
+                with li():
+                    a ("5", href="#")
+        return str(self.doc)
+
 
     @cherrypy.expose
     @require()
@@ -225,6 +238,7 @@ class PcapVisualisation:
         return str(self.doc)
 
     @cherrypy.expose
+    @require()
     def searchStatistics(self):
         self.init()
         self.showMenu()
