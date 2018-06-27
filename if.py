@@ -114,14 +114,6 @@ class PcapVisualisation:
                         h3("Hi", align='center')
         return str(self.doc)
 
-    @cherrypy.expose
-    def showSomething(self):
-        self.init()
-        with self.doc.head:
-            with div(cls="well well-sm"):
-                h4("hello sucker")
-        return str(self.doc)
-
     def showMenu(self):
         with self.doc.head:
             meta(charset="utf-8")
@@ -134,10 +126,10 @@ class PcapVisualisation:
                         with li():
                             a("Player", href="/player")
                         with li():
-                            a("Statistics new Pcap", href="showStatistics")
-                        with li():
-                            a("Statistics existing Pcap", href="searchStatistics")
-                    button("DANGER",cls="btn btn-danger navbar-btn")
+                            a("Statistics", href="/statistics")
+                        # with li():
+                            # a("Statistics existing Pcap", href="searchStatistics")
+                    # button("DANGER",cls="btn btn-danger navbar-btn")
                     username = cherrypy.session.get(SESSION_KEY)
                     print username
                     with ul (cls="nav navbar-nav navbar-right"):
@@ -157,37 +149,37 @@ class PcapVisualisation:
                                     span("Log out")
         
 
-    @cherrypy.expose
-    @require()
-    @require(member_of("administrator")) 
-    def editUsers(self, **kwargs):
-        self.init()
-        self.showMenu()
-        nb = 0
-        index = 0
-        if "nb" in kwargs:
-            nb = kwargs["nb"]
-        if index in kwargs:
-            index = kwargs["index"]
+    # @cherrypy.expose
+    # @require()
+    # @require(member_of("administrator")) 
+    # def editUsers(self, **kwargs):
+    #     self.init()
+    #     self.showMenu()
+    #     nb = 0
+    #     index = 0
+    #     if "nb" in kwargs:
+    #         nb = kwargs["nb"]
+    #     if index in kwargs:
+    #         index = kwargs["index"]
 
-        values = self.dbUsers.getAll()
+    #     values = self.dbUsers.getAll()
 
 
 
-        with self.doc:
-            with div (cls="container"):
-              with ul (cls="pagination"):
-                with li():
-                    a ("1", href="#")
-                with li(cls="active"):
-                    a ("2", href="#")
-                with li():
-                    a ("3", href="#")
-                with li():
-                    a ("4", href="#")
-                with li():
-                    a ("5", href="#")
-        return str(self.doc)
+    #     with self.doc:
+    #         with div (cls="container"):
+    #           with ul (cls="pagination"):
+    #             with li():
+    #                 a ("1", href="#")
+    #             with li(cls="active"):
+    #                 a ("2", href="#")
+    #             with li():
+    #                 a ("3", href="#")
+    #             with li():
+    #                 a ("4", href="#")
+    #             with li():
+    #                 a ("5", href="#")
+    #     return str(self.doc)
 
 
     @cherrypy.expose
@@ -206,23 +198,29 @@ class PcapVisualisation:
         return str(self.doc)
 
     @cherrypy.expose
-    @require()
-    def showStatistics(self,  filename=None, success=False):
+    # @require()
+    def statistics(self, success=False, filename=None):
         self.init()
         self.showMenu()
-        if os.path.isdir(os.path.join(os.getcwd(), "upload")):
-            shutil.rmtree(os.path.join(os.getcwd(), "upload"))
-        os.makedirs(os.path.join(os.getcwd(), "upload"))
-        with self.doc.head:
-            if filename is None:
-                self.uploadFile()
-                if success is not None:
-                    if success == True:
-                        br();br()
-                        with div(id="alertaupload"):
-                            div("Success, file uploaded!", cls="alert alert-success")
-                
-            else:
+        with self.doc:
+            with div(cls='well well-sm'):
+                a("Upload File", cls="btn btn-primary", data_toggle="collapse", href="#collapseExample", role="button", aria_expanded="false", aria_controls="collapseExample")
+                with div():
+                    br()
+                    with div (cls="collapse", id="collapseExample"):
+                        with div (cls="card card-body"):
+                            self.showStatistics()
+  
+            with div(cls="well well-sm"):
+                a("Search File", cls="btn btn-primary", data_toggle="collapse", href="#collapseExample2", role="button", aria_expanded="false", aria_controls="collapseExample2")
+
+                with div():
+                    br()
+                    with div (cls="collapse", id="collapseExample2"):
+                        with div (cls="card card-body"):
+                            self.chooseFile()
+
+            if success:
                 filename , extension = os.path.splitext(filename)
                 filenamerez = ".".join([filename, "txt"])
                 h4(filenamerez)
@@ -236,6 +234,38 @@ class PcapVisualisation:
                     self.showResultsFile(filepathresults)
 
         return str(self.doc)
+
+    @cherrypy.expose
+    @require()
+    def showStatistics(self,  filename=None, success=False):
+        # self.init()
+        # self.showMenu()
+        if os.path.isdir(os.path.join(os.getcwd(), "upload")):
+            shutil.rmtree(os.path.join(os.getcwd(), "upload"))
+        os.makedirs(os.path.join(os.getcwd(), "upload"))
+        # with self.doc:
+        if filename is None:
+            self.uploadFile()
+            if success is not None:
+                if success == True:
+                    br();br()
+                    with div(id="alertaupload"):
+                        div("Success, file uploaded!", cls="alert alert-success")
+            
+        else:
+            filename , extension = os.path.splitext(filename)
+            filenamerez = ".".join([filename, "txt"])
+            h4(filenamerez)
+            filepathresults = os.path.join(cfg.RESULT_DIR, filenamerez)
+            if not os.path.isfile(filepathresults):
+                # procesez si creez fisier cu rezultate
+                p("No results . Processing ...")
+                self.processFile(filename)
+                self.showResultsFile(filepathresults)
+            else:
+                self.showResultsFile(filepathresults)
+
+        # return str(self.doc)
 
     @cherrypy.expose
     @require()
@@ -302,16 +332,17 @@ class PcapVisualisation:
             success = True
         if len(filename) == 0:
             filename = None
-        return self.showStatistics(success=success, filename=filename)
+        raise cherrypy.HTTPRedirect("/statistics?success=%s&filename=%s" % (success, filename))
+        # return self.statistics(success=success, filename=filename)
 
     def chooseFile(self):
         dictToRepresent = {"name" : "", "sha256" : "", "md5" : "" }
-        with self.doc:
-            with form(action="/filterResults"):
-                self.representDictionaryAsComboBox(dictToRepresent, readonly=False, givenid="searchFileCombobox", givenidInput="searchFileInput")
-                br()
-                with div(cls='container'):        
-                    button("Search pcap", cls="btn", id="seachPcapBTN", type="submit")
+        # with self.doc:
+        with form(action="/filterResults"):
+            self.representDictionaryAsComboBox(dictToRepresent, readonly=False, givenid="searchFileCombobox", givenidInput="searchFileInput")
+            br()
+            with div(cls='container'):        
+                button("Search pcap", cls="btn", id="seachPcapBTN", type="submit")
 
     @cherrypy.expose
     def filterResults(self, filterName, filterValue ):
@@ -319,6 +350,7 @@ class PcapVisualisation:
         results = self.dbPcaps.search(filterName, filterValue)
         if results is None:
             pass
+            raise cherrypy.HTTPRedirect("/statistics")
         else:
             if len(results) != 1:
                 pass
@@ -337,9 +369,10 @@ class PcapVisualisation:
                 # procesez si creez fisier cu rezultate
                 p("No results . Processing ...")
                 self.processFile(filename)
-                self.showResultsFile(filepathresults)
-            else:
-                self.showResultsFile(filepathresults)
+            success = True
+
+            raise cherrypy.HTTPRedirect("/statistics?success=%s&filename=%s" % (success, filename))
+                # self.showResultsFile(filepathresults)
 
 
 
@@ -354,17 +387,17 @@ class PcapVisualisation:
         self.representDictionary(f)
 
     def representDictionary(self ,dictToRepresent, readonly=True):
-        with self.doc:
-            with div(cls='container'):
-                with form(cls="form-horizontal"):
-                    with div(cls='form-group'):
-                        for key in sorted(dictToRepresent):
-                            label(key, cls="col-sm-2 control-label")
-                            with div(cls="col-sm-10"):
-                                if readonly:
-                                    input(str(dictToRepresent[key]),value=dictToRepresent[key], cls='form-control',readonly="readonly", id=str(key) ,name="inputdictionary", maxlength=250)
-                                else:
-                                    input(str(dictToRepresent[key]),value=dictToRepresent[key], cls='form-control', id=str(key), name="inputdictionary", maxlength=250)
+        # with self.doc:
+        with div(cls='container'):
+            with form(cls="form-horizontal"):
+                with div(cls='form-group'):
+                    for key in sorted(dictToRepresent):
+                        label(key, cls="col-sm-2 control-label")
+                        with div(cls="col-sm-10"):
+                            if readonly:
+                                input(str(dictToRepresent[key]),value=dictToRepresent[key], cls='form-control',readonly="readonly", id=str(key) ,name="inputdictionary", maxlength=250)
+                            else:
+                                input(str(dictToRepresent[key]),value=dictToRepresent[key], cls='form-control', id=str(key), name="inputdictionary", maxlength=250)
 
     def representDictionaryAsComboBox(self, dictToRepresent, readonly=True, givenid="comboboxDefaultId", givenidInput="inputDefaultId"):
         with div(cls='col-sm-3'):
