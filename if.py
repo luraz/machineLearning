@@ -5,6 +5,9 @@ import os
 import ast
 import shutil
 import config as cfg
+import subprocess
+import ntpath
+import shlex
 # from md5 import md5
 import time 
 from dbService import dbServicePcaps  as dbService
@@ -202,6 +205,7 @@ class PcapVisualisation:
     def statistics(self, success=False, filename=None):
         self.init()
         self.showMenu()
+        rez = None
         with self.doc:
             with div(cls='well well-sm'):
                 a("Upload File", cls="btn btn-primary", data_toggle="collapse", href="#collapseExample", role="button", aria_expanded="false", aria_controls="collapseExample")
@@ -221,19 +225,21 @@ class PcapVisualisation:
                             self.chooseFile()
 
             if success:
-                filename , extension = os.path.splitext(filename)
-                filenamerez = ".".join([filename, "txt"])
-                h4(filenamerez)
-                filepathresults = os.path.join(cfg.RESULT_DIR, filenamerez)
+                # filename , extension = os.path.splitext(filename)
+                # filenamerez = ".".join([filename, "txt"])
+                # h4(filenamerez)
+                filepathresults = os.path.join(cfg.RESULT_DIR, filename, "index.html")
                 if not os.path.isfile(filepathresults):
                     # procesez si creez fisier cu rezultate
                     p("No results . Processing ...")
                     self.processFile(filename)
-                    self.showResultsFile(filepathresults)
+                    rez = self.showResultsFile(filename)
                 else:
-                    self.showResultsFile(filepathresults)
+                    rez = self.showResultsFile(filename)
 
-        return str(self.doc)
+        if rez is None:
+            return str(self.doc)
+        return rez
 
     @cherrypy.expose
     @require()
@@ -253,19 +259,26 @@ class PcapVisualisation:
                         div("Success, file uploaded!", cls="alert alert-success")
             
         else:
-            filename , extension = os.path.splitext(filename)
-            filenamerez = ".".join([filename, "txt"])
-            h4(filenamerez)
-            filepathresults = os.path.join(cfg.RESULT_DIR, filenamerez)
+            # filename , extension = os.path.splitext(filename)
+            # filenamerez = ".".join([filename, "txt"])
+            # h4(filenamerez)
+            filepathresults = os.path.join(cfg.RESULT_DIR, filename, "index.html")
             if not os.path.isfile(filepathresults):
                 # procesez si creez fisier cu rezultate
                 p("No results . Processing ...")
-                self.processFile(filename)
+                pathResults = self.processFile(filename)
+                if not pathResults:
+                    self.showFileErrorMessage(filename)
                 self.showResultsFile(filepathresults)
             else:
                 self.showResultsFile(filepathresults)
 
         # return str(self.doc)
+
+    @cherrypy.expose
+    def showFileErrorMessage(self, filename):
+        with div(cls="well well-sm"):
+            h4("No results for file %s" % ntpath.basename(filename))
 
     @cherrypy.expose
     @require()
@@ -374,17 +387,102 @@ class PcapVisualisation:
             raise cherrypy.HTTPRedirect("/statistics?success=%s&filename=%s" % (success, filename))
                 # self.showResultsFile(filepathresults)
 
-
-
     def showResultsFile(self, filepath):
-        f = open(filepath, 'r').read()
-        try:
-            f = ast.literal_eval(f)
-        except Exception as e :
-            print ("Could not transform to dict file %s " % str(filepath) )
-            print (e)
-            return False
-        self.representDictionary(f)
+        filename = ntpath.basename(filepath)
+        pathfileResults = os.path.join(cfg.RESULT_DIR, filename, "index.html")
+        if not os.path.isfile(pathfileResults):
+            self.showFileErrorMessage(filepath)
+
+        self.init()
+        self.showMenu()
+        with self.doc:
+            with div(cls="well well-lg"):
+                    h3("File: %s" % str(filepath))
+            with div(cls="container"):
+
+                with div(cls="well well-sm"):
+                    a("TCP/UDP Sessions", href="showResultsFileSession?filepath=%s" % filepath)
+                with div(cls="well well-sm"):
+                    p("IP Count")
+                with div(cls="well well-sm"):
+                    p("TCP Port Count")
+                with div(cls="well well-sm"):
+                    p("IP Protocol Count")
+                with div(cls="well well-sm"):
+                    p("Ethernet Type Count")
+                with div(cls="well well-sm"):
+                    p("Image Report")
+                with div(cls="well well-sm"):
+                    p("GET/POST Report")
+                with div(cls="well well-sm"):
+                    p("HTTP Proxy Log")
+
+    @cherrypy.expose
+    def showResultsFileSession(self, filepath):
+        filename = ntpath.basename(filepath)
+        pathfileResults = os.path.join(cfg.RESULT_DIR, filename, "index.html")
+        if not os.path.isfile(pathfileResults):
+            self.showFileErrorMessage(filepath)
+        newResult = """
+        <html><head>
+        <title>Ahahaha</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        </head><body>
+        """
+
+        f = open(pathfileResults, "r")
+        linee = f.readline()
+        while "TCP/UDP/... Sessions" not in linee:
+            linee = f.readline()
+        linee = "<div class='well well-sm'><h3> TCP/UDP Sessions </h3></div>"
+        tableCount = 0
+        while linee:
+            if "IP Count" in linee:
+                break
+            linee = linee.replace("blue", "#008B8B")
+            linee = linee.replace("red", "#B8860B")
+            if "<table" in linee:
+                linee = linee.replace("<table", '<table class="table table-hover" ')
+                linee = linee.replace("border=2", "")
+
+                newResult += linee
+                if tableCount == 0:
+                    tableCount += 1
+                    newResult += linee
+                    newResult += """
+                    <tr><th>Nb</th>
+                                <th>Date</th>
+                                <th>Seconds</th>
+                                <th>IP Src</th>
+                                <th>Type</th>
+                                <th>Bytes</th>
+                                <th>Session</th>
+                            </tr>
+                    """
+                    # line = f.readline()
+                    # continue
+            else:
+                newResult += linee
+            linee    = f.readline()
+
+        f = open("a.txt", "w")
+        f.write(newResult)
+        f.close()
+        return newResult
+
+        # f = open(filepath, 'r').read()
+        # try:
+        #     f = ast.literal_eval(f)
+        # except Exception as e :
+        #     print ("Could not transform to dict file %s " % str(filepath) )
+        #     print (e)
+        #     return False
+        # self.representDictionary(f)
 
     def representDictionary(self ,dictToRepresent, readonly=True):
         # with self.doc:
@@ -408,16 +506,42 @@ class PcapVisualisation:
 
 
     def processFile(self, filepath):
-        rez = {}
-        filename , extension = os.path.splitext(filepath)
-        filenamerez = ".".join([filename, "txt"])
-        filepathresults = os.path.join(cfg.RESULT_DIR, filenamerez)
-        rez["name"] = filename
-        rez["nb"] = 1
-        rez["56845"] = "afsfsdfs"
-        f = open(filepathresults, "w")
-        f.write(str(rez))
-        f.close()
+        # rez = {}
+        # filename , extension = os.path.splitext(filepath)
+        # filenamerez = ".".join([filename, "txt"])
+        # filepathresults = os.path.join(cfg.RESULT_DIR, filenamerez)
+        # rez["name"] = filename
+        # rez["nb"] = 1
+        # rez["56845"] = "afsfsdfs"
+        # f = open(filepathresults, "w")
+        # f.write(str(rez))
+        # f.close()
+        filename = ntpath.basename(filepath)
+        pathFileIndexRezults = os.path.join(cfg.RESULT_DIR,filename, "index.html")
+        if os.path.exists(pathFileIndexRezults):
+            return pathFileIndexRezults
+        currentPath = os.getcwd()
+        pathResults = os.path.join(cfg.RESULT_DIR, filename)
+        if not os.path.exists(pathResults):
+            os.makedirs(pathResults)
+        shutil.copy(os.path.join(os.getcwd(), "chaosreader0.94"), pathResults)
+        os.chdir(pathResults)
+        cmd = "perl chaosreader0.94 %s" % filepath
+        print cmd
+        try:
+            p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out, err = p.communicate()
+        except Exception as e:
+            os.chdir(currentPath)
+            print "Could not process file with error %s " % str(e)
+            return False
+
+        os.chdir(currentPath)
+        
+        if os.path.isfile(pathFileIndexRezults):
+            return pathFileIndexRezults
+        return False
+
 
 def getUsers():
     dbUsers = dbService("users")
@@ -446,7 +570,9 @@ def main():
     #         'tools.staticfile.root' : os.getcwd()
     #     }})
     cherrypy.quickstart(PcapVisualisation(), '/', 'a.conf')
-    # cherrypy.quickstart(PcapVisualisation())
+
+    # p = PcapVisualisation()
+    # p.processFile("/home/laura/games/pcaps/97bfbdd66c14c4fd94637c2c3d2b6419ddbac8f6425ef5e8a941a98ff3b4c52d")
 
 if __name__ == '__main__':
     main()
