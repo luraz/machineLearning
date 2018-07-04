@@ -8,6 +8,7 @@ import config as cfg
 import subprocess
 import ntpath
 import shlex
+from bs4 import BeautifulSoup
 # from md5 import md5
 import time 
 from dbService import dbServicePcaps  as dbService
@@ -269,9 +270,9 @@ class PcapVisualisation:
                 pathResults = self.processFile(filename)
                 if not pathResults:
                     self.showFileErrorMessage(filename)
-                self.showResultsFile(filepathresults)
+                self.showResultsFile(filename)
             else:
-                self.showResultsFile(filepathresults)
+                self.showResultsFile(filename)
 
         # return str(self.doc)
 
@@ -387,43 +388,39 @@ class PcapVisualisation:
             raise cherrypy.HTTPRedirect("/statistics?success=%s&filename=%s" % (success, filename))
                 # self.showResultsFile(filepathresults)
 
-    def showResultsFile(self, filepath):
-        filename = ntpath.basename(filepath)
+    def showResultsFile(self, filename):
+        # filename = ntpath.basename(filepath)
         pathfileResults = os.path.join(cfg.RESULT_DIR, filename, "index.html")
         if not os.path.isfile(pathfileResults):
-            self.showFileErrorMessage(filepath)
+            self.showFileErrorMessage(filename)
 
         self.init()
         self.showMenu()
         with self.doc:
             with div(cls="well well-lg"):
-                    h3("File: %s" % str(filepath))
+                    h3("File: %s" % str(filename))
             with div(cls="container"):
+                with div(cls="well well-sm"):
+                    a("TCP/UDP Sessions", href="showResultsFileSession?filename=%s" % filename)
+                with div(cls="well well-sm"):
+                    a("IP Count", href="showResultsFileIpCount?filename=%s" % filename)
+                with div(cls="well well-sm"):
+                    a("TCP Port Count", href="showResultsFileTCPPortCount?filename=%s" % filename)
+                with div(cls="well well-sm"):
+                    a("TCP Port Count", href="showResultsFileUDPPortCount?filename=%s" % filename)
+                with div(cls="well well-sm"):
+                    a("IP Protocol Count", href="showResultsFileIpProtocolCount?filename=%s" % filename)
+                with div(cls="well well-sm"):
+                    a("Ethernet Type Count", href="showResultsFileEthTypeCount?filename=%s" % filename)
+                with div(cls="well well-sm"):
+                    a("Image Report", href="showResultsFileImageReport?filename=%s" %filename)
+                with div(cls="well well-sm"):
+                    a("GET/POST Report", href="showResultsFileGetPostReport?filename=%s" % filename)
+                with div(cls="well well-sm"):
+                    a("HTTP Proxy Log", href="showResultsFileHttpProxylog?filename=%s" % filename)
 
-                with div(cls="well well-sm"):
-                    a("TCP/UDP Sessions", href="showResultsFileSession?filepath=%s" % filepath)
-                with div(cls="well well-sm"):
-                    p("IP Count")
-                with div(cls="well well-sm"):
-                    p("TCP Port Count")
-                with div(cls="well well-sm"):
-                    p("IP Protocol Count")
-                with div(cls="well well-sm"):
-                    p("Ethernet Type Count")
-                with div(cls="well well-sm"):
-                    p("Image Report")
-                with div(cls="well well-sm"):
-                    p("GET/POST Report")
-                with div(cls="well well-sm"):
-                    p("HTTP Proxy Log")
-
-    @cherrypy.expose
-    def showResultsFileSession(self, filepath):
-        filename = ntpath.basename(filepath)
-        pathfileResults = os.path.join(cfg.RESULT_DIR, filename, "index.html")
-        if not os.path.isfile(pathfileResults):
-            self.showFileErrorMessage(filepath)
-        newResult = """
+    def getBootstrapInclude(self):
+        return  """
         <html><head>
         <title>Ahahaha</title>
 
@@ -435,54 +432,228 @@ class PcapVisualisation:
         </head><body>
         """
 
-        f = open(pathfileResults, "r")
-        linee = f.readline()
-        while "TCP/UDP/... Sessions" not in linee:
-            linee = f.readline()
-        linee = "<div class='well well-sm'><h3> TCP/UDP Sessions </h3></div>"
-        tableCount = 0
+    def divideIndex(self, filename):
+        #divide in : TCP/UDP sessions, IP count, TCP Port Count, IP Protocol Count, Ethernet Type Count
+
+        if filename is None:
+            print "none"
+            return "FilePath is None"
+        # if not os.path.isfile(filename):
+        #     print "not a file"
+        #     return "File Path not a file %s" % str(filename)
+        pathIndex = os.path.join(cfg.RESULT_DIR, filename, "index.html")
+        if not os.path.isfile(pathIndex):
+            print "index"
+            return "Path index not a file %s" % str(pathIndex)
+        f = open(pathIndex, "r").read()
+        soup = BeautifulSoup(f, "html.parser")
+        a = soup.find_all("table")
+        counter = 0
+        for tableContent in a :
+            pathTable = os.path.join(cfg.RESULT_DIR, filename, "%d.html" % counter)
+            fw = open(pathTable, "w")
+            fw.write(str(tableContent))
+            fw.close()
+            counter += 1
+
+
+        # for tableName in ["image.html", "getpost.html", "httplog.text"]:
+        tableName = "image.html"
+        pathTable = os.path.join(cfg.RESULT_DIR, filename, tableName)
+        newPathTable = os.path.join(cfg.RESULT_DIR, filename, "%d.html" % counter)
+        f = open(pathTable, "r")
+        soup = BeautifulSoup(f, "html.parser")
+        a = soup.find_all("table")
+        fw = open(newPathTable, "w")
+        fw.write(str(a[0]))
+        fw.close()
+        f.close()
+        counter += 1
+
+        tableName = "getpost.html"
+        newContent = ""
+        pathTable = os.path.join(cfg.RESULT_DIR, filename, tableName)
+        newPathTable =  os.path.join(cfg.RESULT_DIR, filename, "%d.html" % counter)
+        f = open(pathTable, "r")
+        line = f.readline()
+        while "HTTP GETs and POSTs" not in line:
+            line = f.readline()
+
+        while line:
+            newContent += line
+            line = f.readline()
+
+        f.close()
+        f = open(newPathTable, "w")
+        f.write(newContent)
+        f.close()
+            
+        counter += 1
+
+        tableName = "httplog.text"
+        pathTable = os.path.join(cfg.RESULT_DIR, filename, tableName)
+        newPathTable =  os.path.join(cfg.RESULT_DIR, filename, "%d.html" % counter)
+        f = open(pathTable)
+        content = f.read()
+        f.close()
+        content.replace("\n", "<br>")
+        f = open(newPathTable, "w")
+        f.write(content)
+        f.close()
+
+
+    @cherrypy.expose
+    def showResultsFileSession(self, filename):
+        TABLE_NUMBER = 0
+        tableHeads = """
+                <tr><th>Nb</th>
+                <th>Date</th>
+                <th>Seconds</th>
+                <th>IP Src</th>
+                <th>Type</th>
+                <th>Bytes</th>
+                <th>Session</th>
+                </tr>
+                """
+        Tabletitle = "TCP/UDP Sessions"
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    @cherrypy.expose
+    def showResultsFileIpCount(self, filename):
+        TABLE_NUMBER = 1
+        tableHeads = """
+                <tr>
+                    <th>IP</th>
+                    <th>Count</th>
+                </tr>
+                """
+        Tabletitle = "IP Count"
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    @cherrypy.expose
+    def showResultsFileTCPPortCount(self, filename):
+        TABLE_NUMBER = 2
+        tableHeads = """
+                <tr>
+                    <th>Port</th>
+                    <th>Count</th>
+                </tr>
+                """
+        Tabletitle = "TCP Port Count"
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    @cherrypy.expose
+    def showResultsFileUDPPortCount(self, filename):
+        TABLE_NUMBER = 3
+        tableHeads = """
+                <tr>
+                    <th>Port</th>
+                    <th>Count</th>
+                </tr>
+                """
+        Tabletitle = "UDP Port Count"
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    @cherrypy.expose
+    def showResultsFileIpProtocolCount(self, filename):
+        TABLE_NUMBER = 4
+        tableHeads = """
+                <tr>
+                    <th>Protocol</th>
+                    <th>Count</th>
+                </tr>
+                """
+        Tabletitle = "IP Protocol Count"
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    @cherrypy.expose
+    def showResultsFileEthTypeCount(self, filename):
+        TABLE_NUMBER = 5
+        tableHeads = """
+                <tr>
+                    <th>Ethernet Type</th>
+                    <th>Count</th>
+                </tr>
+                """
+        Tabletitle = "Ethernet Type Count"
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    @cherrypy.expose
+    def showResultsFileImageReport(self, filename):
+        TABLE_NUMBER = 6
+        tableHeads = """
+                <tr>
+                    <th>Nb</th>
+                    <th>Date</th>
+                    <th>Corresponded IPS</th>
+                    <th>Image</th>
+                </tr>
+                """
+        Tabletitle = "Images"
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    @cherrypy.expose
+    def showResultsFileGetPostReport(self, filename):
+        TABLE_NUMBER = 7
+        tableHeads = ""
+                # <tr>
+                #     <th>Nb</th>
+                #     <th>Date</th>
+                #     <th>Method</th>
+                #     <th>Details</th>
+                # </tr>
+                # """
+        Tabletitle = ""
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    @cherrypy.expose
+    def showResultsFileHttpProxylog(self, filename):
+        TABLE_NUMBER = 8
+        tableHeads = """
+                <tr>
+                    <th>IP</th>
+                    <th>Count</th>
+                </tr>
+                """
+        Tabletitle = "IP Count"
+        result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
+        return result
+
+    def getHtmlTable(self, filename, TABLE_NUMBER, tableHeads, Tabletitle):
+        tableName = "%d.html" % TABLE_NUMBER
+       
+        pathfileResults = os.path.join(cfg.RESULT_DIR, filename, tableName)
+        if not os.path.isfile(pathfileResults):
+            self.divideIndex(filename)
+        try:
+            f = open(pathfileResults, "r")
+        except OSError:
+            self.showFileErrorMessage(filename)
+            print "Error on showResultsFileIpCount %s" % str(filename)
+            return ""
+
+        newResult = self.getBootstrapInclude()
+        linee = "<div class='well well-sm'><h3> %s </h3></div>" % str(Tabletitle)
         while linee:
-            if "IP Count" in linee:
-                break
             linee = linee.replace("blue", "#008B8B")
             linee = linee.replace("red", "#B8860B")
+            linee = linee.replace("<table", '<table class="table table-hover" ')
+            linee = linee.replace("border=2", "")
             if "<table" in linee:
-                linee = linee.replace("<table", '<table class="table table-hover" ')
-                linee = linee.replace("border=2", "")
-
                 newResult += linee
-                if tableCount == 0:
-                    tableCount += 1
-                    newResult += linee
-                    newResult += """
-                    <tr><th>Nb</th>
-                                <th>Date</th>
-                                <th>Seconds</th>
-                                <th>IP Src</th>
-                                <th>Type</th>
-                                <th>Bytes</th>
-                                <th>Session</th>
-                            </tr>
-                    """
-                    # line = f.readline()
-                    # continue
+                newResult +=  tableHeads               
             else:
                 newResult += linee
-            linee    = f.readline()
-
-        f = open("a.txt", "w")
-        f.write(newResult)
-        f.close()
+            linee  = f.readline()
         return newResult
-
-        # f = open(filepath, 'r').read()
-        # try:
-        #     f = ast.literal_eval(f)
-        # except Exception as e :
-        #     print ("Could not transform to dict file %s " % str(filepath) )
-        #     print (e)
-        #     return False
-        # self.representDictionary(f)
 
     def representDictionary(self ,dictToRepresent, readonly=True):
         # with self.doc:
@@ -506,16 +677,6 @@ class PcapVisualisation:
 
 
     def processFile(self, filepath):
-        # rez = {}
-        # filename , extension = os.path.splitext(filepath)
-        # filenamerez = ".".join([filename, "txt"])
-        # filepathresults = os.path.join(cfg.RESULT_DIR, filenamerez)
-        # rez["name"] = filename
-        # rez["nb"] = 1
-        # rez["56845"] = "afsfsdfs"
-        # f = open(filepathresults, "w")
-        # f.write(str(rez))
-        # f.close()
         filename = ntpath.basename(filepath)
         pathFileIndexRezults = os.path.join(cfg.RESULT_DIR,filename, "index.html")
         if os.path.exists(pathFileIndexRezults):
@@ -571,7 +732,9 @@ def main():
     #     }})
     cherrypy.quickstart(PcapVisualisation(), '/', 'a.conf')
 
+
     # p = PcapVisualisation()
+    # p.divideIndex("/home/laura/games/pcaps/97bfbdd66c14c4fd94637c2c3d2b6419ddbac8f6425ef5e8a941a98ff3b4c52d")
     # p.processFile("/home/laura/games/pcaps/97bfbdd66c14c4fd94637c2c3d2b6419ddbac8f6425ef5e8a941a98ff3b4c52d")
 
 if __name__ == '__main__':
