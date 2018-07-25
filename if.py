@@ -233,6 +233,7 @@ class PcapVisualisation:
                 if not os.path.isfile(filepathresults):
                     # procesez si creez fisier cu rezultate
                     p("No results . Processing ...")
+                    # inspect file
                     self.processFile(filename)
                     rez = self.showResultsFile(filename)
                 else:
@@ -401,6 +402,10 @@ class PcapVisualisation:
                     h3("File: %s" % str(filename))
             with div(cls="container"):
                 with div(cls="well well-sm"):
+                    self.showInspectionResults(filename)
+                    a("Inspection details", href="showInspectionResultsDetails?filename=%s" % filename)
+            with div(cls="container"):
+                with div(cls="well well-sm"):
                     a("TCP/UDP Sessions", href="showResultsFileSession?filename=%s" % filename)
                 with div(cls="well well-sm"):
                     a("IP Count", href="showResultsFileIpCount?filename=%s" % filename)
@@ -501,6 +506,20 @@ class PcapVisualisation:
         f.write(content)
         f.close()
 
+    @cherrypy.expose
+    # @require()
+    def showInspectionResults(self, filename):
+        p("verdict : infected")
+
+    @cherrypy.expose
+    def showInspectionResultsDetails(self, filename):
+        self.init()
+        self.showMenu()
+        with self.doc:
+            with div(cls='container'):
+                with div(cls='well well-sm'):
+                    p("Filename %s " % str(filename))
+        return str(self.doc)
 
     @cherrypy.expose
     def showResultsFileSession(self, filename):
@@ -617,13 +636,9 @@ class PcapVisualisation:
     @cherrypy.expose
     def showResultsFileHttpProxylog(self, filename):
         TABLE_NUMBER = 8
-        tableHeads = """
-                <tr>
-                    <th>IP</th>
-                    <th>Count</th>
-                </tr>
-                """
-        Tabletitle = "IP Count"
+        tableHeads = ""
+                
+        Tabletitle = "HTTP Proxy Log"
         result = self.getHtmlTable(filename, TABLE_NUMBER, tableHeads, Tabletitle)
         return result
 
@@ -703,6 +718,12 @@ class PcapVisualisation:
             return pathFileIndexRezults
         return False
 
+
+    def inspectFile(self, filename):
+        pass
+        '''
+        creates a html in the files result directory inspection.html
+        '''
 
 def getUsers():
     dbUsers = dbService("users")
